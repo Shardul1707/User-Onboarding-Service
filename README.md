@@ -30,18 +30,8 @@ A scalable, event-driven micro-service for user registration and onboarding buil
 
 ## 🏗️ Architecture
 
-┌─────────────┐
-│   FastAPI   │
-│   Server    │
-└──────┬──────┘
-       │
-       ├───► PostgreSQL (User Data)
-       │
-       └───► RabbitMQ (Message Queue)
-                 │
-                 └───► Consumer Worker
-                          │
-                          └───► Process & Store
+<img width="481" height="299" alt="image" src="https://github.com/user-attachments/assets/2e97e223-8576-4ff1-a8af-f5e93d3743aa" />
+
 
 ## Components
 
@@ -82,31 +72,8 @@ python -m app.consumers.user_consumer
 
 ## Project Structure
 
-event_user_onboarding_service/
-├── app/
-│   ├── __init__.py
-│   ├── main.py                 # FastAPI application entry point
-│   ├── db_conn.py              # Database connection and session management
-│   ├── rmq_adapter.py          # RabbitMQ connection and message handling
-│   ├── schema.py               # Pydantic models for request/response
-│   ├── configs/
-│   │   ├── __init__.py
-│   │   └── .env                # Environment variables (not in repo)
-│   ├── endpoints/
-│   │   ├── __init__.py
-│   │   └── publish_endpoint.py # API route definitions
-│   ├── views/
-│   │   ├── __init__.py
-│   │   └── publish_view.py     # Business logic layer
-│   ├── helpers/
-│   │   ├── __init__.py
-│   │   └── helper.py           # Utility functions (retry, instance getters)
-│   └── consumers/
-│       ├── __init__.py
-│       └── user_consumer.py    # RabbitMQ message consumer
-├── requirements.txt            # Python dependencies
-├── start.sh                    # Server startup script
-└── README.md                   # This file
+<img width="285" height="524" alt="image" src="https://github.com/user-attachments/assets/0d7af7d9-f5dd-4f36-a542-2d564d5dc648" />
+
 
 ## API Endpoints
 
