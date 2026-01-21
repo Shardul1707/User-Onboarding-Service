@@ -79,3 +79,47 @@ The API will be available at: http://localhost:5000
 Start the Consumer In a separate terminal:
 
 python -m app.consumers.user_consumer
+
+## Project Structure
+
+event_user_onboarding_service/
+├── app/
+│   ├── __init__.py
+│   ├── main.py                 # FastAPI application entry point
+│   ├── db_conn.py              # Database connection and session management
+│   ├── rmq_adapter.py          # RabbitMQ connection and message handling
+│   ├── schema.py               # Pydantic models for request/response
+│   ├── configs/
+│   │   ├── __init__.py
+│   │   └── .env                # Environment variables (not in repo)
+│   ├── endpoints/
+│   │   ├── __init__.py
+│   │   └── publish_endpoint.py # API route definitions
+│   ├── views/
+│   │   ├── __init__.py
+│   │   └── publish_view.py     # Business logic layer
+│   ├── helpers/
+│   │   ├── __init__.py
+│   │   └── helper.py           # Utility functions (retry, instance getters)
+│   └── consumers/
+│       ├── __init__.py
+│       └── user_consumer.py    # RabbitMQ message consumer
+├── requirements.txt            # Python dependencies
+├── start.sh                    # Server startup script
+└── README.md                   # This file
+
+## API Endpoints
+
+POST /signup
+Register a new user.
+
+GET /users/{user_id}
+Get user details by user ID.
+
+PUT /users/{user_id}
+Update user verification_state.
+
+
+## Author
+
+Created by Shardul Powale
