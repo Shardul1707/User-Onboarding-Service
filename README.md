@@ -50,3 +50,32 @@ Business Logic: View functions for user operations
 Data Layer: SQLAlchemy ORM for database operations
 Message Queue: RabbitMQ for asynchronous task processing
 Consumer: Background worker processing onboarding tasks
+
+
+## 🔄 Message Flow
+
+1. User Registration Request → FastAPI endpoint
+2. Validation → Check if user already exists
+3. Publish to Queue → Send user data to RabbitMQ
+4. Consumer Processing → Background worker processes message
+5. Database Storage → User data saved to PostgreSQL
+6. Response → Return success/error to client
+
+## 🛡️ Error Handling
+
+1. Retry Logic: Exponential backoff for transient failures
+2. Dead Letter Queue: Failed messages after max retries
+3. Connection Resilience: Auto-reconnect for database and RabbitMQ
+4. Graceful Degradation: Service continues even if one component fails
+
+## 🏃 Running the Service
+
+Start the API Server:
+
+uvicorn app.main:app --host 0.0.0.0 --port 5000 --reload
+
+The API will be available at: http://localhost:5000
+
+Start the Consumer In a separate terminal:
+
+python -m app.consumers.user_consumer
