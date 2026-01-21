@@ -27,3 +27,26 @@ A scalable, event-driven micro-service for user registration and onboarding buil
 - PostgreSQL 12+ (running and accessible)
 - RabbitMQ 3.8+ (running and accessible)
 - pip (Python package manager)
+
+## 🏗️ Architecture
+
+┌─────────────┐
+│   FastAPI   │
+│   Server    │
+└──────┬──────┘
+       │
+       ├───► PostgreSQL (User Data)
+       │
+       └───► RabbitMQ (Message Queue)
+                 │
+                 └───► Consumer Worker
+                          │
+                          └───► Process & Store
+
+## Components
+
+API Layer: FastAPI endpoints handling HTTP requests
+Business Logic: View functions for user operations
+Data Layer: SQLAlchemy ORM for database operations
+Message Queue: RabbitMQ for asynchronous task processing
+Consumer: Background worker processing onboarding tasks
